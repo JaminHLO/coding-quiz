@@ -1,8 +1,10 @@
 var titleCard = document.getElementById("title-card");
 var textCard = document.getElementById("text-card");
 var startBtn = document.querySelector("#start-btn"); //was querySelector
-// var answerBtn = document.querySelector(".btn");
+var timerDisplay = document.querySelector(".timer-display");
 var currentQuestion = {};
+var timer;
+var timerCount;
 
 //create a questions array containing question objects.
 var questionArray = [
@@ -39,23 +41,25 @@ var questionArray = [
 ];
 
 //test function to get things started
-function init (){
-    console.log("The title is:", titleCard.children[0].textContent);
+// function init (){
+//     console.log("The title is:", titleCard.children[0].textContent);
 
-}
+// }
 
 //while additional questions are unanswered, load another
 function selectNextQuestion() {
     //make sure we have additional questions    
     if (questionArray.length <= 0){
-        console.log("Out of questions");
+        console.log("Game Over, Out of Questions");
+        timerCount = 1;
         //go to final page
     }
     else {
         //grab a question from end of array and set to currentQuestion
         currentQuestion = questionArray.pop();
+        createQuestion();
     }
-    createQuestion();
+    
 }
 
 //using the current question, create a question screen
@@ -72,7 +76,7 @@ function createQuestion() {
     for (var i=2; i < arrayOfAnswers.length; i++) {
         var currentAnswer = document.createElement("div");
         currentAnswer.textContent = arrayOfAnswers[i][1];
-        console.log(arrayOfAnswers[i][1]);
+        // console.log(arrayOfAnswers[i][1]);
         currentAnswer.setAttribute("class", "btn");
         textCard.appendChild(currentAnswer);
     }
@@ -80,42 +84,43 @@ function createQuestion() {
     //add eventListeners to answer buttons
     for (var j=0; j<4; j++) {
         textCard.children[j].addEventListener("click", function(){
-            console.log("button clicked was:", this.textContent);
+            // console.log("button clicked was:", this.textContent);
             //check clicked answer vs solution
             if (this.textContent === currentQuestion.solution){
                 console.log("Correct!");
             }
             else {
                 console.log("Incorrect.");
+                timerCount = timerCount-5;
             }
             //move along to next question, if any
             selectNextQuestion();
         });
     }
-    // textCard.children[1].addEventListener("click", function(){
-    //     console.log("button clicked was:", textCard.children[1].textContent);
-    // });
-    // textCard.children[2].addEventListener("click", function(){
-    //     console.log("button clicked was:", textCard.children[2].textContent);
-    // });
-    // textCard.children[3].addEventListener("click", function(){
-    //     console.log("button clicked was:", textCard.children[3].textContent);
-    // });
 
-    // <div class="btn">1. strings</div>
-    // <div class="btn">2. booleans</div>
-    // <div class="btn">3. alerts</div>
-    // <div class="btn">4. numbers</div>
+}
+
+function startTimer() {
+    timer = setInterval(function() {
+        timerCount--;
+        timerDisplay.textContent = timerCount;
+        if (timerCount <= 0) {
+            clearInterval(timer);
+            //endGame    
+            console.log("Game Over, Timer Expired");
+        }
+    }, 1000);
 }
 
 
 //add event listener to start button
 startBtn.addEventListener("click", function() {
-    
+    timerCount = 60;
+    startTimer();
     selectNextQuestion();
 });
 
 
-//start test function
-init();
+// //start test function
+// init();
 

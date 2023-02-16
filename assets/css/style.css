@@ -17,18 +17,12 @@
   /* Appearance and flow of nav bar */
 nav {
     display: flex;
-    /* position:absolute; */
     justify-content: space-between;
     text-shadow: 1px 1px 1px grey;
-    /* align-items: flex-end; */
-}
-
-/* Text appearance for navigation bar links */
-nav a {
     margin: 20px;
     font-weight: bold;
     text-decoration: none;
-  }
+}
 
 /* Navigation bar hover underline effect */
 nav a:hover {
