@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* justify-content:space-around; */
+    /* align-items: center; */
+    /* background: linear-gradient(0deg, rgba(19,41,61,1) 0%, rgba(237,245,249,1) 63%); */
+    background: linear-gradient(331deg, rgb(179, 178, 178) 0%, rgb(243, 242, 242) 45%, rgb(151, 151, 151) 100%);
+    background-repeat: no-repeat;
+  }
+
+  /* Appearance and flow of nav bar */
+nav {
+    display: flex;
+    /* position:absolute; */
+    justify-content: space-between;
+    text-shadow: 1px 1px 1px grey;
+    /* align-items: flex-end; */
+}
+
+/* Text appearance for navigation bar links */
+nav a {
+    margin: 20px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+/* Navigation bar hover underline effect */
+nav a:hover {
+    text-decoration-line: underline;
+  }
+
+header {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 1px grey;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20vw;
+    margin-right: 20vw;
+  }
+
+section {
+
+    /* margin-bottom: 20vh; */
+    font-size: 24px;
+    text-shadow: 1px 1px 1px grey;
+    display: flex;
+    flex-direction: column;
+  } 
+
+  .sec-rules {
+    align-items: center;
+  }
+
+  .sec-quest {
+    max-width: 50vh;
+  }
+
+  .btn {
+    background-color: hsl(276, 91%, 36%);
+    color: white;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 15px;
+    line-height: 20px;
+    margin: 20px 20px 20px 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+    /* transform: rotate(1deg); */
+    box-shadow: inset 0px 0px 8px white, 0 0 15px white;
+  }
+
+  #start-btn {
+    background-color: hsl(130, 97%, 26%);
+    display: flex;
+    font-size:30px;
+    max-width: 180px;
+    border-radius: 15px;
+    line-height: 20px;
+    margin: 20px 20px 20px 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
