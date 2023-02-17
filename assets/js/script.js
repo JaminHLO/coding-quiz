@@ -1,11 +1,13 @@
 var titleCard = document.getElementById("title-card");
 var textCard = document.getElementById("text-card");
-var startBtn = document.querySelector("#start-btn"); //was querySelector
+var startBtn = document.querySelector("#start-btn"); 
 var timerDisplay = document.querySelector(".timer-display");
+var badgesCard = document.getElementById("badges-card");
 var currentQuestion = {};
 var timer;
 var timerCount;
 var dangerColor = "";
+var score = 0;
 
 //create a questions array containing question objects.
 var questionArray = [
@@ -41,14 +43,9 @@ var questionArray = [
     ans4: "4. console.log"}
 ];
 
-//test function to get things started
-// function init (){
-//     console.log("The title is:", titleCard.children[0].textContent);
-
-// }
-
 //while additional questions are unanswered, load another
 function selectNextQuestion() {
+    console.log("Current Score is:", score);
     //make sure we have additional questions    
     if (questionArray.length <= 0){
         console.log("Game Over, Out of Questions");
@@ -60,7 +57,6 @@ function selectNextQuestion() {
         currentQuestion = questionArray.pop();
         createQuestion();
     }
-    
 }
 
 //using the current question, create a question screen
@@ -87,13 +83,24 @@ function createQuestion() {
         textCard.children[j].addEventListener("click", function(){
             // console.log("button clicked was:", this.textContent);
             //check clicked answer vs solution
+            var currentBadge = document.createElement("div");
             if (this.textContent === currentQuestion.solution){
                 console.log("Correct!");
+                //create correct badge
+                currentBadge.textContent = "Correct!";
+                currentBadge.setAttribute("id", "correct");
+                score = score+10;
             }
             else {
                 console.log("Incorrect.");
+                //penalize time
                 timerCount = timerCount-5;
+                //create incorrect badge
+                currentBadge.textContent = "Incorrect.";
+                currentBadge.setAttribute("id", "incorrect");
+                score = score-5;
             }
+            badgesCard.appendChild(currentBadge);
             //move along to next question, if any
             selectNextQuestion();
         });
