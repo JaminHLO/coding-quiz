@@ -5,6 +5,7 @@ var timerDisplay = document.querySelector(".timer-display");
 var currentQuestion = {};
 var timer;
 var timerCount;
+var dangerColor = "";
 
 //create a questions array containing question objects.
 var questionArray = [
@@ -109,18 +110,20 @@ function startTimer() {
             //endGame    
             console.log("Game Over, Timer Expired");
         }
+        //start counter effect
+        colorBooster = 236-(timerCount*8); //
+        dangerColor = "rgb("+colorBooster+", 0, 0);"; //
+        // console.log(dangerColor);
+        timerDisplay.setAttribute("style", "color:"+String(dangerColor));//
     }, 1000);
 }
 
-
 //add event listener to start button
 startBtn.addEventListener("click", function() {
-    timerCount = 60;
+    timerCount = 30;
     startTimer();
     selectNextQuestion();
 });
 
 
-// //start test function
-// init();
 

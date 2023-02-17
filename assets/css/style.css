@@ -7,9 +7,6 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* justify-content:space-around; */
-    /* align-items: center; */
-    /* background: linear-gradient(0deg, rgba(19,41,61,1) 0%, rgba(237,245,249,1) 63%); */
     background: linear-gradient(331deg, rgb(179, 178, 178) 0%, rgb(243, 242, 242) 45%, rgb(151, 151, 151) 100%);
     background-repeat: no-repeat;
   }
@@ -22,11 +19,13 @@ nav {
     margin: 20px;
     font-weight: bold;
     text-decoration: none;
+    font-size: 20px;
 }
 
 /* Navigation bar hover underline effect */
 nav a:hover {
     text-decoration-line: underline;
+    cursor: pointer;
   }
 
 header {
@@ -36,6 +35,7 @@ header {
     margin-left: 20vw;
     margin-right: 20vw;
     margin-bottom: 30px;
+    padding: 5px;
     text-shadow: 1px 1px 1px grey;
   }
 
@@ -45,11 +45,10 @@ header {
     align-items: flex-start;
     margin-left: 20vw;
     margin-right: 20vw;
+    
   }
 
 section {
-
-    /* margin-bottom: 20vh; */
     font-size: 24px;
     text-shadow: 1px 1px 1px grey;
     display: flex;
@@ -65,7 +64,7 @@ section {
   }
 
   .btn {
-    background-color: hsl(276, 91%, 36%);
+    background-color: purple;
     color: white;
     display: inline-block;
     font-size: 20px;
@@ -78,12 +77,12 @@ section {
 
   .btn:hover {
     transform: scale(1.05);
-    /* transform: rotate(1deg); */
     box-shadow: inset 0px 0px 8px white, 0 0 15px white;
   }
 
   #start-btn {
     background-color: hsl(130, 97%, 26%);
+    color: white;
     display: flex;
     font-size:30px;
     max-width: 180px;
