@@ -55,12 +55,44 @@ section {
     flex-direction: column;
   } 
 
+  form {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    align-items: center;
+  }
+
+input {
+  margin: 5px;
+}
+
+  input[type=text] {
+    width: 20vw;
+    padding: 12px 20px;
+    margin: 8px 10px;
+    box-sizing: border-box;
+  }
+
   .sec-rules {
     align-items: center;
   }
 
-  .sec-quest {
-    max-width: 50vh;
+
+  .init-btn {
+    background-color: purple;
+    color: white;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 15px;
+    line-height: 20px;
+    margin: 2px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .init-btn:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0px 0px 8px white, 0 0 15px white;
   }
 
   .btn {
@@ -84,6 +116,11 @@ section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .sec-record {
+    display:flex;
+    justify-content: space-between;
   }
 
   #correct {
@@ -140,6 +177,10 @@ main, header {
   font-size: 1rem;
   margin-left: 10vw;
   margin-right: 10vw;
+}
+
+form {
+  flex-direction: column;
 }
   
 .btn {
