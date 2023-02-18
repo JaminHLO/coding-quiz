@@ -10,21 +10,21 @@ This website has been tested to be functional on Chrome, MS Edge, Brave, Samsung
 
 The site is accessable here: <https://jaminhlo.github.io/coding-quiz/>
 
-Screenshot of Navigation Bar and Intro of Coding Game as seen on Chrome Browser:
-<img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss01.jpg width="40vw" alt="nav bar and intro of my coding game">
+<sup>(left) Screenshot of Intro and Rules of Coding Game.  (right) Game in progress with badges accumulating as time counter turns red</sup><br>
+<img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss01.jpg height="250" alt="nav bar and intro of my coding game"> <img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss02.jpg height="250" alt="game in progress">
 
-<sup>(left) Game in progress with badges accumulating as time count slowly turning red. (right) User's score is presented with prompt for their initials.</sup>
-<img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss02.jpg width="40vw" alt="game in progress"> <img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss03.jpg width="500" alt="game over screen">
+<sup>(left) User's score is presented with prompt for their initials.  (right) top scores display screen with previous scores from localStorage</sup><br>
+<img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss03.jpg height="250" alt="game over screen"> <img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss04.jpg height="250" alt="high score listing"> 
 
 ## Credits
 
-Instruction was provided by Instructor Saurav with assistance from TAs Andreas #1, Andreas #2, Constan, and Morgan. Special shout out to Morgan who helped me with a tricky flex-box issue and walked me through using the developer tools in my browser.
+Instruction was provided by Instructor Saurav with assistance from TAs Andreas #1, Andreas #2, Constan, and Morgan.
 
-For an excellent resource for understanding the Flexbox I used our friend Flexbox Froggy: 
-<https://flexboxfroggy.com/>
+Leaned heavily on previous assignments and online resources. A good online resource I used was: 
+<https://www.w3schools.com/>
 
-For a good resource for designing a gradient background, check out: 
-<https://cssgradient.io/>
+For a good resource for javascript debugging and error messages, check out: 
+<https://stackoverflow.com/>
 
 ## License
 
