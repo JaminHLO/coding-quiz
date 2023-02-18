@@ -13,8 +13,8 @@ The site is accessable here: <https://jaminhlo.github.io/coding-quiz/>
 Screenshot of Navigation Bar and Intro of Coding Game as seen on Chrome Browser:
 <img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss01.jpg width="500" alt="nav bar and intro of my coding game">
 
-Screenshot of game in progress with 'correct' or 'incorrect' badges accumulating as well as the time count slowly turning red.:
-<img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss02.jpg width="500" alt="game in progress">
+(left) Game in progress with badges accumulating as time count slowly turning red. (right) User's score is presented with prompt for their initials.
+<img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss02.jpg width="500" alt="game in progress"> <img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss03.jpg width="500" alt="game over screen">
 
 ## Credits
 
