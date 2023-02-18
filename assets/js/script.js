@@ -102,7 +102,7 @@ function storeRecords (newInitials) {
     var previousRecs = JSON.parse(localStorage.getItem("gameRecs"));
 
     //if previous recs don't exist then make new array 
-    if (previousRecs == null) {
+    if (!previousRecs) {
         gameRecs[0] = newRecord;
     }
     else {
