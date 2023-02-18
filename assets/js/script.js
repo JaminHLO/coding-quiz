@@ -105,18 +105,27 @@ function storeRecords (newInitials) {
     console.log("New record to store is", newRecord);
     // load previous records if any
     var previousRecs = JSON.parse(localStorage.getItem("gameRecs"));
-    
-    console.log("previous recs are:", previousRecs);
 
-    if (previousRecs != "[]") {
-        gameRecs = previousRecs;
-        //push new initials and score onto game records array   
-        gameRecs.push(newRecord);
-    }
-    else 
-    {
+    //if previous recs don't exist then make new array 
+    if (previousRecs == null) {
         gameRecs[0] = newRecord;
     }
+    else {
+        gameRecs = previousRecs;
+        gameRecs.push(newRecord);
+    }
+
+
+
+    // if (previousRecs != "[]" || null) {
+    //     gameRecs = previousRecs;
+    //     //push new initials and score onto game records array   
+    //     gameRecs.push(newRecord);
+    // }
+    // else 
+    // {
+    //     gameRecs[0] = newRecord;
+    // }
     
 
     //record score
