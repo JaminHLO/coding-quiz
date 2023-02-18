@@ -66,11 +66,12 @@ input {
   margin: 5px;
 }
 
-  input[type=text] {
-    width: 20vw;
+  input[type="text"] {
+    width: 100px;
     padding: 12px 20px;
     margin: 8px 10px;
     box-sizing: border-box;
+    text-overflow: ellipsis;
   }
 
   .sec-rules {

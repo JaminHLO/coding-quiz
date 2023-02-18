@@ -1,10 +1,9 @@
 var titleCard = document.getElementById("title-card");
 var textCard = document.getElementById("text-card");
-var startBtn = document.querySelector("#start-btn"); 
+var startBtn = document.getElementById("start-btn"); 
+// var highScores = document.getElementById("top-menu");
 var timerDisplay = document.querySelector(".timer-display");
 var badgesCard = document.getElementById("badges-card");
-// var initSubmit = document.getElementById("#init-submit");
-// var initInput = document.getElementById("#user-initials");
 var currentQuestion = {};
 var timer;
 var timerCount;
@@ -13,49 +12,46 @@ var score = 0;
 var gameRecs = [];
 
 //create a questions array containing question objects.
-var questionArray = [
-    {question: "Commonly used data types DO Not Include:", 
-    solution: "3. alerts",
-    ans1: "1. strings",
-    ans2: "2. booleans", 
-    ans3: "3. alerts", 
-    ans4: "4. numbers"},
-    {question: "The condition in an if / else statement is enclosed with ______.", 
-    solution: "3. parenthesis", 
-    ans1: "1. quotes", 
-    ans2: "2. curly brackets", 
-    ans3: "3. parenthesis", 
-    ans4: "4. square brackets"},
-    {question: "Arrays in JavaScript can be used to store ______.",  
-    solution: "4. all of the above",
-    ans1: "1. numbers and strings", 
-    ans2: "2. other arrays", 
-    ans3: "3. booleans", 
-    ans4: "4. all of the above"},
-    {question: "String values must be enclosed within ______ when being assigned to variables.",  
-    solution: "3. quotes",
-    ans1: "1. commas", 
-    ans2: "2. curly brackets", 
-    ans3: "3. quotes", 
-    ans4: "4. parenthesis"},
-    {question: "A very useful tool used during development and debugging for printing content to the debugger is:",  
-    solution: "4. console.log",
-    ans1: "1. JavaScript", 
-    ans2: "2. terminal/bash", 
-    ans3: "3. for loops", 
-    ans4: "4. console.log"}
-];
+var questionArray = [];
+
+
+function restartGame() {
+    //reset titleCard to original message
+    titleCard.textContent = "";
+    var restartH1 = document.createElement("h1");
+    restartH1.textContent = "Coding Quiz Challenge";
+    titleCard.appendChild(restartH1);
+
+    //remove question class from text card section
+    textCard.removeAttribute("class", "sec-quest");
+    textCard.setAttribute("class", "sec-rules");
+    //wipe previous text card content
+    textCard.textContent = "";
+    //create div with rules
+    var rulesDiv = document.createElement("div");
+    rulesDiv.textContent = "Answer these code-related questions in 30 seconds for 10 points each. Incorrect answers cost 5 points and reduce time by 5 seconds. Unused time will be added to your score.";
+    textCard.appendChild(rulesDiv);
+    var btnDiv = document.createElement("div");
+    btnDiv.setAttribute("id", "start-btn");
+    btnDiv.textContent = "Start Quiz";
+    textCard.appendChild(btnDiv);
+    startBtn = document.querySelector("#start-btn");
+    init();
+}
 
 function displayRecords () {
+    //stop timer if it is still running
+    clearInterval(timer);
     //get stored game records from localStorage
     var previousRecs = JSON.parse(localStorage.getItem("gameRecs"));
     
     //if game records available, update game array
-    if (previousRecs !== []) {
+    if (previousRecs != "[]") {
         gameRecs = previousRecs;
         console.log("previous records loaded", gameRecs);
     }
     else {
+        gameRecs = [];
         console.log("no previous records");
     }
 
@@ -71,15 +67,36 @@ function displayRecords () {
 
     //add game records to list
     var initOrderedList = document.createElement("ol");
+    initOrderedList.setAttribute("list-style", "1");
     for (var i=0; i<gameRecs.length; i++) {
         var initListItem = document.createElement("li");
         initListItem.textContent = gameRecs[i];
         initOrderedList.appendChild(initListItem);
     }
-    //go back button
-    //clear high score button
     textCard.appendChild(initOrderedList);
-    console.log("need to add go back button and clear high score button");
+    
+    //create buttons
+    var scoreButtons = document.createElement("div");
+    scoreButtons.setAttribute("class", "sec-badges");
+    //create back button
+    var backButton = document.createElement("button");
+    backButton.setAttribute("class", "init-btn");
+    backButton.setAttribute("id", "back-btn");
+    backButton.textContent = "Go Back";
+    scoreButtons.appendChild(backButton);
+    //create clear button
+    var clearButton = document.createElement("button");
+    clearButton.setAttribute("class", "init-btn");
+    clearButton.setAttribute("id", "clear-btn");
+    clearButton.textContent = "Clear High Scores";
+    scoreButtons.appendChild(clearButton);
+    //event listener is handled below
+
+    //attach buttons below to high score list
+    textCard.appendChild(scoreButtons);
+
+    
+    // console.log("need to add go back button and clear high score button");
 }
 
 //store records
@@ -89,12 +106,18 @@ function storeRecords (newInitials) {
     // load previous records if any
     var previousRecs = JSON.parse(localStorage.getItem("gameRecs"));
     
-    if (previousRecs !== null) {
-        gameRecs = previousRecs;
-    }
+    console.log("previous recs are:", previousRecs);
 
-    //push new initials and score onto game records array   
-    gameRecs.push(newRecord);
+    if (previousRecs != "[]") {
+        gameRecs = previousRecs;
+        //push new initials and score onto game records array   
+        gameRecs.push(newRecord);
+    }
+    else 
+    {
+        gameRecs[0] = newRecord;
+    }
+    
 
     //record score
     localStorage.setItem("gameRecs", JSON.stringify(gameRecs));
@@ -105,7 +128,16 @@ textCard.addEventListener("click", function(event) {
     event.preventDefault();
 
     var element = event.target;
-    if (element.matches(".init-btn")) {
+    if (element.matches("#clear-btn")) {
+        localStorage.setItem("gameRecs", JSON.stringify("[]")); //
+        console.log("reset localStorage");
+        displayRecords();
+    } 
+    else if (element.matches("#back-btn")) { //back btn to restart?
+        console.log("going back");
+        restartGame();
+    }
+    else if (element.matches(".init-btn")) {
         console.log("submit button clicked");
         
         var initFieldInput = document.querySelector("#user-initials").value;
@@ -121,10 +153,10 @@ textCard.addEventListener("click", function(event) {
         // var initText = initFieldInput.value.trim();
         storeRecords(initFieldInput);
         displayRecords ();
-    }
+    }  
 });
 
-function displayScore () {
+function displayScore () {    
     //display user score
     titleCard.textContent = "All done!";
     var scoreText = ("Your final score is " + score + ".");
@@ -149,9 +181,7 @@ function displayScore () {
     initForm.appendChild(initField);
    
     //add submit btn
-    var initBtn = document.createElement("button")
-    // initBtn.setAttribute("type", "button");
-    // initBtn.setAttribute("value", "Submit");
+    var initBtn = document.createElement("button");
     initBtn.textContent = "Submit";
     initBtn.setAttribute("class", "init-btn");
     initForm.appendChild(initBtn);
@@ -248,12 +278,60 @@ function startTimer() {
     }, 1000);
 }
 
-//add event listener to start button
-startBtn.addEventListener("click", function() {
-    timerCount = 30;
-    startTimer();
-    selectNextQuestion();
-});
+//(re)initialize game conditions
+function init() {
+    //(re)set variable
+    // timer = "";
+    timerCount = 30
+    score = 0;
+    timerDisplay.textContent = timerCount;
+    timerDisplay.setAttribute("style", "color:black");
+
+    questionArray = [
+        {question: "Commonly used data types DO Not Include:", 
+        solution: "3. alerts",
+        ans1: "1. strings",
+        ans2: "2. booleans", 
+        ans3: "3. alerts", 
+        ans4: "4. numbers"},
+        {question: "The condition in an if / else statement is enclosed with ______.", 
+        solution: "3. parenthesis", 
+        ans1: "1. quotes", 
+        ans2: "2. curly brackets", 
+        ans3: "3. parenthesis", 
+        ans4: "4. square brackets"},
+        {question: "Arrays in JavaScript can be used to store ______.",  
+        solution: "4. all of the above",
+        ans1: "1. numbers and strings", 
+        ans2: "2. other arrays", 
+        ans3: "3. booleans", 
+        ans4: "4. all of the above"},
+        {question: "String values must be enclosed within ______ when being assigned to variables.",  
+        solution: "3. quotes",
+        ans1: "1. commas", 
+        ans2: "2. curly brackets", 
+        ans3: "3. quotes", 
+        ans4: "4. parenthesis"},
+        {question: "A very useful tool used during development and debugging for printing content to the debugger is:",  
+        solution: "4. console.log",
+        ans1: "1. JavaScript", 
+        ans2: "2. terminal/bash", 
+        ans3: "3. for loops", 
+        ans4: "4. console.log"}
+    ];
+    //add event listener to start button
+    startBtn.addEventListener("click", function() {
+        startTimer();
+        selectNextQuestion();
+    });
+
+    // //add event listener to View high scores
+    // highScores.addEventListener("click", function() {
+    //     displayRecords();
+    // })
+
+}
 
 
 
+init();

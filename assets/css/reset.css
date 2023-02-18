@@ -28,6 +28,7 @@ pre, code {
   font-family: inherit;
 }
 
-ol, ul {
+/* removed ol */
+ul { 
   list-style: none;
 }
