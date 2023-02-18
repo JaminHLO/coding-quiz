@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
   }
+  /* appearance flow and background of body */
   body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -28,6 +29,7 @@ nav a:hover {
     cursor: pointer;
   }
 
+  /* appearance of header  */
 header {
     display: flex;
     font-size: 30px;
@@ -39,15 +41,16 @@ header {
     text-shadow: 1px 1px 1px grey;
   }
 
+  /* appearance and flow of main  */
   main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-left: 20vw;
     margin-right: 20vw;
-    
   }
 
+  /* appearance and flow of sections  */
 section {
     font-size: 24px;
     text-shadow: 1px 1px 1px grey;
@@ -55,6 +58,7 @@ section {
     flex-direction: column;
   } 
 
+  /* appearance and flow of form  */
   form {
     display: flex;
     flex-direction: row;
@@ -62,10 +66,12 @@ section {
     align-items: center;
   }
 
+  /* sets margin around inputs - both field and button  */
 input {
   margin: 5px;
 }
 
+/* handles sizing and behavior of input field for user initials  */
   input[type="text"] {
     width: 100px;
     padding: 12px 20px;
@@ -74,11 +80,12 @@ input {
     text-overflow: ellipsis;
   }
 
+  /* sets appearance of class rules on the first page  */
   .sec-rules {
     align-items: center;
   }
 
-
+/* sets appearance of button for entering your initials  */
   .init-btn {
     background-color: purple;
     color: white;
@@ -91,11 +98,13 @@ input {
     cursor: pointer;
   }
 
+  /* sets hover behavior for button for setting initials  */
   .init-btn:hover {
     transform: scale(1.05);
     box-shadow: inset 0px 0px 8px white, 0 0 15px white;
   }
 
+  /* general button appearance  */
   .btn {
     background-color: purple;
     color: white;
@@ -108,22 +117,26 @@ input {
     cursor: pointer;
   }
 
+  /* general button hover behavior  */
   .btn:hover {
     transform: scale(1.05);
     box-shadow: inset 0px 0px 8px white, 0 0 15px white;
   }
 
+  /* flow of badges  */
   .sec-badges {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
   }
 
+  /* layoout of listing of records  */
   .sec-record {
     display:flex;
     justify-content: space-between;
   }
 
+  /* appearance of correct badges  */
   #correct {
     border-style: solid;
     border-width: 5px;
@@ -138,6 +151,7 @@ input {
     min-width: 70px;
   }
 
+  /* appearance of incorrect badges  */
   #incorrect {
     border-style: solid;
     border-width: 5px;
@@ -151,6 +165,7 @@ input {
     padding: 30px;
   }
 
+  /* appearance of start button  */
   #start-btn {
     background-color: hsl(130, 97%, 26%);
     color: white;
@@ -164,7 +179,7 @@ input {
     cursor: pointer;
   }
 
-  
+  /* handles smaller screen sizes and mobile devices  */
 @media (max-width: 690px) {
   nav {
     font-size: 1rem;

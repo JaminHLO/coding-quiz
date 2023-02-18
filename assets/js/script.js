@@ -1,7 +1,7 @@
+//list of global variables
 var titleCard = document.getElementById("title-card");
 var textCard = document.getElementById("text-card");
 var startBtn = document.getElementById("start-btn"); 
-// var highScores = document.getElementById("top-menu");
 var timerDisplay = document.querySelector(".timer-display");
 var badgesCard = document.getElementById("badges-card");
 var currentQuestion = {};
@@ -14,7 +14,7 @@ var gameRecs = [];
 //create a questions array containing question objects.
 var questionArray = [];
 
-
+//restart the game to original settings
 function restartGame() {
     //reset titleCard to original message
     titleCard.textContent = "";
@@ -39,6 +39,7 @@ function restartGame() {
     init();
 }
 
+//display records from localStorage
 function displayRecords () {
     //stop timer if it is still running
     clearInterval(timer);
@@ -48,11 +49,9 @@ function displayRecords () {
     //if game records available, update game array
     if (previousRecs != "[]") {
         gameRecs = previousRecs;
-        console.log("previous records loaded", gameRecs);
     }
     else {
         gameRecs = [];
-        console.log("no previous records");
     }
 
     //create record list screen
@@ -94,15 +93,11 @@ function displayRecords () {
 
     //attach buttons below to high score list
     textCard.appendChild(scoreButtons);
-
-    
-    // console.log("need to add go back button and clear high score button");
 }
 
 //store records
 function storeRecords (newInitials) {
     var newRecord = newInitials+ " - " + String(score);
-    console.log("New record to store is", newRecord);
     // load previous records if any
     var previousRecs = JSON.parse(localStorage.getItem("gameRecs"));
 
@@ -114,20 +109,6 @@ function storeRecords (newInitials) {
         gameRecs = previousRecs;
         gameRecs.push(newRecord);
     }
-
-
-
-    // if (previousRecs != "[]" || null) {
-    //     gameRecs = previousRecs;
-    //     //push new initials and score onto game records array   
-    //     gameRecs.push(newRecord);
-    // }
-    // else 
-    // {
-    //     gameRecs[0] = newRecord;
-    // }
-    
-
     //record score
     localStorage.setItem("gameRecs", JSON.stringify(gameRecs));
 }
@@ -136,26 +117,21 @@ function storeRecords (newInitials) {
 textCard.addEventListener("click", function(event) {
     event.preventDefault();
 
+    //check which button was clicked, if any
     var element = event.target;
     if (element.matches("#clear-btn")) {
-        localStorage.setItem("gameRecs", JSON.stringify("[]")); //
-        console.log("reset localStorage");
+        localStorage.setItem("gameRecs", JSON.stringify("[]")); 
         displayRecords();
     } 
-    else if (element.matches("#back-btn")) { //back btn to restart?
-        console.log("going back");
+    else if (element.matches("#back-btn")) { 
         restartGame();
     }
     else if (element.matches(".init-btn")) {
-        console.log("submit button clicked");
-        
         var initFieldInput = document.querySelector("#user-initials").value;
-        console.log("user entered", initFieldInput);
         initFieldInput = initFieldInput.trim();
 
         //exit if no content
         if (initFieldInput === ""){
-            console.log("error: nothing entered.");
             return;
         }
 
@@ -165,6 +141,7 @@ textCard.addEventListener("click", function(event) {
     }  
 });
 
+//display user's final score
 function displayScore () {    
     //display user score
     titleCard.textContent = "All done!";
@@ -199,6 +176,7 @@ function displayScore () {
     textCard.appendChild(initForm);
 }
 
+//add event listeners to each button
 function listenToAnswers () {
     //add eventListeners to answer buttons
     for (var j=0; j<4; j++) {
@@ -206,15 +184,15 @@ function listenToAnswers () {
             // console.log("button clicked was:", this.textContent);
             //check clicked answer vs solution
             var currentBadge = document.createElement("div");
+            //handle correct answer
             if (this.textContent === currentQuestion.solution){
-                console.log("Correct!");
                 //create correct answer badge
                 currentBadge.textContent = "Correct!";
                 currentBadge.setAttribute("id", "correct");
                 score = score+10;
             }
+            //handle incorrect answer
             else {
-                console.log("Incorrect.");
                 //penalize time
                 timerCount -= 5;
                 //create incorrect answer badge
@@ -243,7 +221,6 @@ function createQuestion() {
     for (var i=2; i < arrayOfAnswers.length; i++) {
         var currentAnswer = document.createElement("div");
         currentAnswer.textContent = arrayOfAnswers[i][1];
-        // console.log(arrayOfAnswers[i][1]);
         currentAnswer.setAttribute("class", "btn");
         textCard.appendChild(currentAnswer);
     }
@@ -255,7 +232,6 @@ function createQuestion() {
 function selectNextQuestion () {
     //make sure we have additional questions    
     if (questionArray.length <= 0){
-        console.log("Game Over, Out of Questions");
         //stop timer
         clearInterval(timer);
         //add remaining time to score
@@ -264,7 +240,7 @@ function selectNextQuestion () {
         displayScore();
     }
     else {
-        //grab a question from end of array and set to currentQuestion
+        //pop a question from end of array and set to currentQuestion
         currentQuestion = questionArray.pop();
         createQuestion();
     }
@@ -280,7 +256,7 @@ function startTimer() {
             //endGame if time runs out
             displayScore();
         }
-        //start counter red effect
+        //start counter red effect - what's a game without stress?
         colorBooster = 236-(timerCount*8); 
         dangerColor = "rgb("+colorBooster+", 0, 0);"; 
         timerDisplay.setAttribute("style", "color:"+String(dangerColor));
@@ -289,8 +265,7 @@ function startTimer() {
 
 //(re)initialize game conditions
 function init() {
-    //(re)set variable
-    // timer = "";
+    //(re)set variables
     timerCount = 30
     score = 0;
     timerDisplay.textContent = timerCount;
@@ -328,19 +303,13 @@ function init() {
         ans3: "3. for loops", 
         ans4: "4. console.log"}
     ];
+
     //add event listener to start button
     startBtn.addEventListener("click", function() {
         startTimer();
         selectNextQuestion();
     });
-
-    // //add event listener to View high scores
-    // highScores.addEventListener("click", function() {
-    //     displayRecords();
-    // })
-
 }
 
-
-
+//start initial conditions
 init();
