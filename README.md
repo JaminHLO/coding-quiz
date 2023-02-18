@@ -11,10 +11,10 @@ This website has been tested to be functional on Chrome, MS Edge, Brave, Samsung
 The site is accessable here: <https://jaminhlo.github.io/coding-quiz/>
 
 Screenshot of Navigation Bar and Intro of Coding Game as seen on Chrome Browser:
-<img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss01.jpg width="500" alt="nav bar and intro of my coding game">
+<img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss01.jpg width="40vw" alt="nav bar and intro of my coding game">
 
-(left) Game in progress with badges accumulating as time count slowly turning red. (right) User's score is presented with prompt for their initials.
-<img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss02.jpg width="500" alt="game in progress"> <img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss03.jpg width="500" alt="game over screen">
+<sup>(left) Game in progress with badges accumulating as time count slowly turning red. (right) User's score is presented with prompt for their initials.</sup>
+<img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss02.jpg width="40vw" alt="game in progress"> <img src=https://raw.githubusercontent.com/JaminHLO/coding-quiz/main/assets/images/cq-ss03.jpg width="500" alt="game over screen">
 
 ## Credits
 
